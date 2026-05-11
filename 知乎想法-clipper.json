@@ -1,0 +1,38 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "知乎想法",
+	"behavior": "create",
+	"noteContentFormat": "{{selectorHtml:.RichContent-inner|first|replace:\"href=\\\"https\\://zhida\":\"\"|markdown}}\n\n{{selectorHtml:.PinItem-remainContentRichText|first|markdown}}",
+	"properties": [
+		{
+			"name": "source",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{selector:.UserLink-link|slice:1,2}}",
+			"type": "multitext"
+		},
+		{
+			"name": "publicTime",
+			"value": "{{selector:.ContentItem-time a|first|replace:\\\"发布于\\\":\\\"\\\"}}",
+			"type": "text"
+		},
+		{
+			"name": "tags",
+			"value": "clippings, 知乎/想法",
+			"type": "multitext"
+		},
+		{
+			"name": "clippedAt",
+			"value": "{{date|date:\\\"YYYY-MM-DD HH:mm\\\"}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"/^https:\\/\\/www\\.zhihu\\.com\\/pin\\/\\d+\\/?(?:[?#].*)?$/"
+	],
+	"noteNameFormat": "{{selector:.UserLink-link|slice:1,2}} - {{selector:.ContentItem-time a|first|replace:\"发布于\":\"\"}} - 知乎想法",
+	"path": "Clippings/知乎"
+}

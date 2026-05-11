@@ -1,0 +1,33 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "知乎回答",
+	"behavior": "create",
+	"noteContentFormat": "{{selectorHtml:.QuestionAnswer-content .RichText|replace:\"href=\\\"https\\://zhida\":\"\"|markdown}}",
+	"properties": [
+		{
+			"name": "source",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{selector:.UserLink-link|slice:1,2}}",
+			"type": "multitext"
+		},
+		{
+			"name": "published",
+			"value": "{{selector:.ContentItem-time|last}}",
+			"type": "date"
+		},
+		{
+			"name": "tags",
+			"value": "clippings, 知乎/回答",
+			"type": "multitext"
+		}
+	],
+	"triggers": [
+		"/^https:\\/\\/www\\.zhihu\\.com\\/question\\/\\d+\\/answer\\/\\d+\\/?(?:[?#].*)?$/"
+	],
+	"noteNameFormat": "{{title|replace:\" - 知乎\":\"\"}}",
+	"path": "Clippings/知乎"
+}
